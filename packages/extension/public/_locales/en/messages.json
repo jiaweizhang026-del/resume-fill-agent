@@ -1,0 +1,11 @@
+{
+    "extName": {
+        "message": "Resume Fill Agent"
+    },
+    "extDescription": {
+        "message": "Resume-aware browser assistant using your own LLM API. Never submits forms automatically."
+    },
+    "extActionTitle": {
+        "message": "Open Resume Fill"
+    }
+}

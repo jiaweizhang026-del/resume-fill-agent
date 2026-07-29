@@ -1,0 +1,11 @@
+{
+    "extName": {
+        "message": "履历助手 Agent"
+    },
+    "extDescription": {
+        "message": "基于本人履历的浏览器填写助手；使用自己的模型 API，绝不自动提交。"
+    },
+    "extActionTitle": {
+        "message": "打开履历助手"
+    }
+}
