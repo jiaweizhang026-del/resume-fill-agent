@@ -10,6 +10,8 @@ const MAX_REQUEST_BYTES = 1_000_000
 const DEFAULT_MODEL = 'deepseek-chat'
 const TASK_COST = 1
 
+const PRIVACY_HTML = `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>履历助手 Agent 隐私政策</title><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:760px;margin:40px auto;padding:0 20px;line-height:1.7;color:#222}h1{line-height:1.3}small{color:#666}</style><h1>履历助手 Agent 隐私政策</h1><small>更新日期：2026-09-09</small><h2>处理哪些信息</h2><p>扩展在浏览器本地保存你主动提供的履历、产品 Key 和设置。你发起任务时，扩展会将任务文字、履历及完成填写所需的页面内容发送到产品网关 api.jawi.top，再转发给 DeepSeek 生成操作建议。页面内容可能包含个人身份信息、网页地址、用户操作相关上下文和网站文字。</p><h2>用途</h2><p>这些信息仅用于理解当前页面并辅助填写招聘或网申表单。产品 Key 仅用于访问控制和额度扣减；服务端保存 Key 的哈希、状态、剩余额度和最近使用时间，不保存原始 Key、履历正文或页面正文。</p><h2>第三方处理</h2><p>模型请求由 DeepSeek 处理；网络基础设施由 Cloudflare Workers 和 D1 提供。请仅在你愿意进行上述处理的页面发起任务，并自行核对填写结果。</p><h2>保留与删除</h2><p>本地履历和历史记录可在扩展设置中删除。网关只保留产品 Key 的哈希及额度管理记录；如需查询或删除服务记录，请联系 <a href="mailto:jiaweizhang026@gmail.com">jiaweizhang026@gmail.com</a>。</p><h2>联系我们</h2><p>邮箱：<a href="mailto:jiaweizhang026@gmail.com">jiaweizhang026@gmail.com</a></p></html>`
+
 /** @typedef {{ PRODUCT_KEYS: D1Database, DEEPSEEK_API_KEY: string, DEEPSEEK_MODEL?: string }} Env */
 
 /** @param {unknown} value @param {number} status */
@@ -213,6 +215,9 @@ export default {
 		if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: JSON_HEADERS })
 
 		const url = new URL(request.url)
+		if (request.method === 'GET' && url.pathname === '/privacy') {
+			return new Response(PRIVACY_HTML, { headers: { 'content-type': 'text/html; charset=utf-8' } })
+		}
 		if (request.method === 'GET' && url.pathname === '/health') {
 			return json({ ok: true, service: 'resume-api', version: 1 })
 		}
