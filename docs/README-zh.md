@@ -1,5 +1,9 @@
 # Page Agent
 
+## 履历助手 Agent（本仓库产品化分支）
+
+本仓库在 Page Agent 基础上实现了面向招聘 / 网申页面的履历填写产品。完整的产品、架构、AI Coding 协作过程与验证说明见：[AI_CODING_PORTFOLIO.md](./AI_CODING_PORTFOLIO.md)。
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://page-agent.github.io/assets/readme/banner-dark.png">
   <img alt="Page Agent Banner" src="https://page-agent.github.io/assets/readme/banner-light.png">
